@@ -131,28 +131,6 @@ int main (int argc, char *argv[])
                 }
         }
 
-        //code for handling critical section
-        for (i = 0; i <5; i++)
-        {
-                //grabbling semaphore
-                if ((semid = semget(key, 1, 0)) == -1)
-                {
-                        perror("semget");
-                        exit(1);
-                }
-                //sleeping for random amount of time
-                sleep(rand() % 5);
-                //printing current system time
-                printf("OSS: task completed at: %s", "$(date = '%r')");
-                sleep(rand() % 5);
-                if (semctl(semid, 0, IPC_RMID, arg) == -1)
-                {
-                        perror("semctl");
-                        exit(1);
-                }
-        }
-
-
         //prints the current j salue that the master loop ended at
         printf("OSS: result took %d seconds\n", j);
 
